@@ -1,11 +1,12 @@
 #include <iostream>
+#include <memory>
 #include <cassert>
 #include <map>
 #include "types.h"
 #include "visitor.h"
 
 template<class T>
-void test(const std::map<int, validator::ITypes *> &rules_map, T &val, int id) {
+void test(const std::map<int, std::unique_ptr<validator::ITypes>> &rules_map, T &val, int id) {
     using namespace validator;
 
     TypeVisitor type_visitor(val);
@@ -24,11 +25,13 @@ int main() {
     using namespace validator;
 
     int id = 0;
-    std::map<int, ITypes *> rules_map = {
-            {id++, new Int(10, 20)},
-            {id++, new Float(1.5, 1.9)},
-            {id++, new String(3)},
-    };
+    std::map<int, std::unique_ptr<ITypes>> rules_map;
+
+    rules_map.insert(std::pair<int, std::unique_ptr<ITypes>>(id++, std::make_unique<Int>(10, 20)));
+    rules_map.insert(std::pair<int, std::unique_ptr<ITypes>>(id++, std::make_unique<Float>(1.5, 1.9)));
+    rules_map.insert(std::pair<int, std::unique_ptr<ITypes>>(id++, std::make_unique<String>(3)));
+
+    std::unique_ptr<ITypes> x = std::make_unique<Int>(10, 20);
 
     {
         int input = 5;
