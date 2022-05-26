@@ -9,14 +9,17 @@
 
 
 namespace validator {
-    class Visitor {
+
+    class IVisitor {
     public:
         virtual bool visit(Int *) {};
+
+        virtual ~IVisitor() {}
     };
 
 
     template<class T>
-    class TypeVisitor : public Visitor {
+    class TypeVisitor : public IVisitor {
     public:
         T value;
 

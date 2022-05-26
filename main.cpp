@@ -2,14 +2,14 @@
 #include "types.h"
 #include "visitor.h"
 
-bool validator::Int::validation(Visitor *v) {
+bool validator::Int::validation(IVisitor *v) {
     v->visit(this);
 }
 
 int main() {
     using namespace validator;
 
-    Types *type = new Int(10, 20);
+    ITypes *type = new Int(10, 20);
 
     int input = 155;
     TypeVisitor type_visitor(input);

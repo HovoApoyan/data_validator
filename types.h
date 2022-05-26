@@ -10,19 +10,21 @@
 
 namespace validator {
 
-    class Types {
+    class ITypes {
     public:
-        virtual bool validation(class Visitor *) = 0;
+        virtual bool validation(class IVisitor *) = 0;
+
+        virtual ~ITypes() {}
     };
 
 
-    class Int : public Types {
+    class Int : public ITypes {
     public:
         typedef int data_type;
 
         Int(data_type min, data_type max);
 
-        bool validation(Visitor *) override;
+        bool validation(IVisitor *) override;
 
         std::tuple<data_type, bool> verification(const data_type &val) const;
 
