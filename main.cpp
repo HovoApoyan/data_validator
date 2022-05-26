@@ -5,7 +5,7 @@
 #include "visitor.h"
 
 template<class T>
-void test(std::map<int, validator::ITypes *> &rules_map, T &val, int id) {
+void test(const std::map<int, validator::ITypes *> &rules_map, T &val, int id) {
     using namespace validator;
 
     TypeVisitor type_visitor(val);

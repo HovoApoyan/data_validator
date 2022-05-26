@@ -3,8 +3,6 @@ project(data_validator)
 
 set(CMAKE_CXX_STANDARD 17)
 
-
-
 option(VALIDATION_AS_LIB "Enable if you want to use it as a library" ON)
 
 if (VALIDATION_AS_LIB)
