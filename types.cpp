@@ -14,19 +14,16 @@ namespace validator {
     }
 
     std::tuple<Int::data_type, bool> Int::verification(const data_type &val) const {
-        data_type new_val = val;
-        bool is_valid = true;
+        data_type new_val;
+        bool is_valid = false;
 
         if (val < _min) {
             new_val = _min;
-            is_valid = false;
-            std::cout << "min\n";
         } else if (val > _max) {
             new_val = _max;
-            is_valid = false;
-            std::cout << "max\n";
         } else {
-            std::cout << "nothing\n";
+            new_val = val;
+            is_valid = true;
         }
 
         return {new_val, is_valid};
