@@ -3,13 +3,6 @@
 #include "types.h"
 #include "visitor.h"
 
-bool validator::Int::validation(IVisitor *v) {
-    v->visit(this);
-}
-
-bool validator::Float::validation(IVisitor *v) {
-    return v->visit(this);
-}
 
 int main() {
     using namespace validator;

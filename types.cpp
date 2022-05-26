@@ -3,6 +3,7 @@
 //
 
 #include "types.h"
+#include "visitor.h"
 
 
 namespace validator {
@@ -29,6 +30,10 @@ namespace validator {
         return {new_val, is_valid};
     }
 
+    bool validator::Int::validation(IVisitor *v) {
+        v->visit(this);
+    }
+
 
     Float::Float(const data_type &min, const data_type &max)
             : _min(min),
@@ -50,5 +55,9 @@ namespace validator {
         }
 
         return {new_val, is_valid};
+    }
+
+    bool validator::Float::validation(IVisitor *v) {
+        return v->visit(this);
     }
 }
