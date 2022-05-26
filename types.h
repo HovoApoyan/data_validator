@@ -22,7 +22,23 @@ namespace validator {
     public:
         typedef int data_type;
 
-        Int(data_type min, data_type max);
+        Int(const data_type& min, const data_type& max);
+
+        bool validation(IVisitor *) override;
+
+        std::tuple<data_type, bool> verification(const data_type &val) const;
+
+    private:
+        data_type _min;
+        data_type _max;
+    };
+
+
+    class Float : public ITypes {
+    public:
+        typedef float data_type;
+
+        Float(const data_type &min, const data_type &max);
 
         bool validation(IVisitor *) override;
 

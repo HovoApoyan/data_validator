@@ -14,6 +14,8 @@ namespace validator {
     public:
         virtual bool visit(Int *) {};
 
+        virtual bool visit(Float *) {};
+
         virtual ~IVisitor() {}
     };
 
@@ -32,6 +34,14 @@ namespace validator {
             auto [new_value, is_valid] = obj->verification(value);
 
             if (is_valid) value = new_value;
+
+            return is_valid;
+        }
+
+        bool visit(Float *obj) override {
+            auto [new_value, is_valid] = obj->verification(value);
+
+            if (!is_valid) value = new_value;
 
             return is_valid;
         }

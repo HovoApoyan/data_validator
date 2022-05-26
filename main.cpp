@@ -1,9 +1,14 @@
 #include <iostream>
+#include <cassert>
 #include "types.h"
 #include "visitor.h"
 
 bool validator::Int::validation(IVisitor *v) {
     v->visit(this);
+}
+
+bool validator::Float::validation(IVisitor *v) {
+    return v->visit(this);
 }
 
 int main() {
@@ -16,8 +21,11 @@ int main() {
 
     auto is_valid = type->validation(&type_visitor);
 
-    if (!is_valid)
+    if (!is_valid) {
         input = type_visitor.value;
+    }
+
+    assert(input == 20);
 
     std::cout << "input value: " << input << std::endl;
 
