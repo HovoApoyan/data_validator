@@ -23,7 +23,6 @@ namespace validator {
         } else if (val > _max) {
             new_val = _max;
         } else {
-            new_val = val;
             is_valid = true;
         }
 
@@ -31,7 +30,7 @@ namespace validator {
     }
 
     bool validator::Int::validation(IVisitor *v) {
-        v->visit(this);
+        return v->visit(this);
     }
 
 
@@ -50,7 +49,6 @@ namespace validator {
         } else if (val > _max) {
             new_val = _max;
         } else {
-            new_val = val;
             is_valid = true;
         }
 
@@ -74,7 +72,6 @@ namespace validator {
         if (val.size() > _length) {
             new_val = std::string(val.begin(), val.begin() + _length);
         } else {
-            new_val = val;
             is_valid = true;
         }
 
