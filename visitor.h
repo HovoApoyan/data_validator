@@ -33,7 +33,7 @@ namespace validator {
         bool visit(Int *obj) override {
             auto [new_value, is_valid] = obj->verification(value);
 
-            if (is_valid) value = new_value;
+            if (!is_valid) value = new_value;
 
             return is_valid;
         }
