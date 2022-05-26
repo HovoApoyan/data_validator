@@ -16,6 +16,8 @@ namespace validator {
 
         virtual bool visit(Float *) {};
 
+        virtual bool visit(String *) {};
+
         virtual ~IVisitor() {}
     };
 
@@ -39,6 +41,25 @@ namespace validator {
         }
 
         bool visit(Float *obj) override {
+            auto [new_value, is_valid] = obj->verification(value);
+
+            if (!is_valid) value = new_value;
+
+            return is_valid;
+        }
+    };
+
+    template<>
+    class TypeVisitor<std::string> : public IVisitor {
+    public:
+        std::string value;
+
+        TypeVisitor(const std::string &val)
+                : value(val) {
+
+        }
+
+        bool visit(String *obj) override {
             auto [new_value, is_valid] = obj->verification(value);
 
             if (!is_valid) value = new_value;

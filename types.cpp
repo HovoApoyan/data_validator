@@ -60,4 +60,28 @@ namespace validator {
     bool validator::Float::validation(IVisitor *v) {
         return v->visit(this);
     }
+
+
+    String::String(size_t length)
+            : _length(length) {
+
+    }
+
+    std::tuple<String::data_type, bool> String::verification(const data_type &val) {
+        data_type new_val;
+        bool is_valid = false;
+
+        if (val.size() > _length) {
+            new_val = std::string(val.begin(), val.begin() + _length);
+        } else {
+            new_val = val;
+            is_valid = true;
+        }
+
+        return {new_val, is_valid};
+    }
+
+    bool validator::String::validation(IVisitor *v) {
+        return v->visit(this);
+    }
 }
