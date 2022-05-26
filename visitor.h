@@ -27,9 +27,14 @@ namespace validator {
     public:
         T value;
 
-        TypeVisitor(T val)
+        explicit TypeVisitor(T val)
                 : value(val) {
 
+        }
+
+        TypeVisitor &operator=(const T &val) {
+            this->value = val;
+            return *this;
         }
 
         bool visit(Int *obj) override {
