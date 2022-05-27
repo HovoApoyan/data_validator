@@ -1,3 +1,7 @@
+### Introduction
+
+*data_validator* is a C++ library, allows one to declare data constraints. The design pattern Visitor idea was used․
+
 Simple example:
 
 ```cpp
